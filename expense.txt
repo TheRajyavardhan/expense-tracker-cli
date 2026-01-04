@@ -1,0 +1,6 @@
+1,2026-01-01,250,Food,Lunch at canteen
+2,2026-01-01,120,Transport,Bus fare
+3,2026-01-02,1500,Shopping,Groceries
+4,2026-01-03,99,Entertainment,Movie rent
+5,2026-01-04,300,Utilities,Mobile recharge
+
