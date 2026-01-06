@@ -5,7 +5,7 @@ def insert_exp(exp_list):
     try: 
         with open(EXPENSE_FILE,"a",newline="") as file:
             csv.writer(file).writerow(exp_list)
-        return 0
+        return True
     except FileNotFoundError:
         print("File not found.")
         return 
@@ -19,4 +19,25 @@ def get_exp_list():
     except FileNotFoundError:
         print("File not found.")
     
+def display_all_record():
+    try:
+        with open(EXPENSE_FILE,"r") as file:
+            rows = list(csv.reader(file))
+            if not rows:
+                print("Empty Records.")
+            else:
+                for row in rows:
+                    print()
+                    print("ID: ",row[0])
+                    print("Date: ",row[1])
+                    print("Amount: ", row[2])
+                    print("Category: ", row[3])
+                    print("Note: ", row[4])
+                    print()
+        return
+    except FileNotFoundError:
+        print("File not found.") 
+
+
+
 

@@ -1,5 +1,6 @@
 import expense_ops as eo
-from datetime import date
+# import datetime 
+import datetime
 def main():
 
     do_stop = False
@@ -10,10 +11,11 @@ def main():
         print("2. View all expense")
         print("3. Viw expenses by date")
         print("4. View expense by category")
-        print("5. Update an expense")
-        print("6. Delete an expense")
-        print("7. Show total expense")
-        print("8. Exit")
+        print("5. Search Expense ID.")
+        print("6. Update an expense")
+        print("7. Delete an expense")
+        print("8. Show total expense")
+        print("9. Exit")
         print("=================================")
 
         selected_opt = int(input("Your choice: "))
@@ -29,26 +31,27 @@ def main():
                 if not category.isalpha():
                     print("Invalid Category.")
                     break
-                exp_date = date.today().isoformat()
+                exp_date = datetime.date.today().isoformat()
                 note = input("Enter the note: ")
                 result = eo.add_expense(amt,category,exp_date,note)
-                if result == 0:
+                if result == True:
                     print("Expenses added successfully.")
                 ans = input("Do you want to continue adding expense? (Enter = yes, n = no)... ").lower()
                 if ans == 'n':
                     stop_adding = True
 
-        # elif selected_opt == 2:
+        elif selected_opt == 2:
+            eo.view_all_record()
+        
+        elif selected_opt == 3:
+            exp_date = input("Enter the date(YYYY-MM-DD): ")
+            eo.exp_by_date(exp_date)
 
-        # elif selected_opt == 3:
-
-        # elif selected_opt == 4:
-
-        # elif selected_opt == 5:
-
-        # elif selected_opt == 6:
-
-        # elif selected_opt == 7:
+        elif selected_opt == 5:
+            search_id = input("Enter the Expense ID: ")
+            if not search_id.isdigit():
+                print("Invalid ID Entry.")
+            eo.search_exp_id(search_id)
 
         elif selected_opt == 8:
             ans = input(
