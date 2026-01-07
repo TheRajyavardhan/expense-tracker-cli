@@ -3,7 +3,7 @@
 # print(today)
 
 # import storage as st
-# import utils as ut
+import utils as ut
 
 # result = st.get_exp_list()
 # abs = ut.get_id(result)
@@ -60,5 +60,11 @@ import csv
 # display_all_record()
 
 import storage as st
-exp_list = st.get_exp_list()
-print(exp_list)
+# exp_list = st.get_exp_list()
+# unique_list = ut.find_unique_categories(exp_list)
+# print(unique_list)
+# for k,v in unique_list:
+#     print(k,v)
+import expense_ops as eo
+
+eo.show_all_category()

@@ -50,3 +50,20 @@ def exp_by_date(search_date):
     if not found:
         print("Date not found.")
     return 
+
+def exp_by_category():
+    exp_list = st.get_exp_list()
+    category_list = ut.find_unique_categories(exp_list)
+    print("Choose the category: ")
+
+    for key,val in category_list.items():
+        option_line = str(key+1)+". "+val
+        print(option_line)
+    idx = input("Enter the category: ")
+    for row in exp_list:
+        if row[3] == category_list[int(idx)-1]:
+            print("\nExpense ID: ",row[0])
+            print("Date: ",row[1])
+            print("Amount: ",row[2])
+            print("Note: ",row[4],end='\n\n')
+    

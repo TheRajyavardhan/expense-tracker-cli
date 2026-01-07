@@ -19,3 +19,14 @@ def validate_date(search_date):
         except ValueError:
              print("Invalid Date Entry.")
              return False
+
+def find_unique_categories(exp_list):
+      if not exp_list:
+            print("No category.")
+            return
+      unique_list = {}
+      idx = 0
+      for row in exp_list:
+              unique_list[idx] = row[3]
+              idx+=1
+      return unique_list

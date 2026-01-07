@@ -27,7 +27,7 @@ def main():
                 if not amt.isdigit() or int(amt) <= 0:
                     print("Invalid Amount.")
                     break
-                category = input("Enter the category: ")
+                category = input("Enter the category: ").strip().lower()
                 if not category.isalpha():
                     print("Invalid Category.")
                     break
@@ -46,6 +46,9 @@ def main():
         elif selected_opt == 3:
             exp_date = input("Enter the date(YYYY-MM-DD): ")
             eo.exp_by_date(exp_date)
+
+        elif selected_opt == 4:
+             eo.exp_by_category()
 
         elif selected_opt == 5:
             search_id = input("Enter the Expense ID: ")

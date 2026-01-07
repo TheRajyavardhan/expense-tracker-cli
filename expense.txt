@@ -1,12 +1,13 @@
-1,2026-01-01,250,Food,Lunch at canteen
-2,2026-01-01,120,Transport,Bus fare
-3,2026-01-02,1500,Shopping,Groceries
-4,2026-01-03,99,Entertainment,Movie
-5,2026-01-04,300,Utilities,Mobile recharge
-6,2026-01-05,Novel,200,Iron Dyansty
-7,2026-01-05,Book,500,Atomic Habits
-8,2026-01-05,500,Book,Let Us C
-9,2026-01-05,700,Recharge,Jio
-10,2026-01-05,500,Food,Pizza
-11,2026-01-05,500,Train,Lucknow to Prayagraj
-12,2026-01-05,5000,Mobile,Lenovo
+1,2026-01-01,250,food,Lunch
+2,2026-01-01,120,transport,bus fare
+3,2026-01-02,1500,shopping,groceries
+4,2026-01-03,99,entertainment,movie
+5,2026-01-04,300,Utilities,mobile recharge
+6,2026-01-05,200,novel,iron dyansty
+7,2026-01-05,500,book,atomic habits
+8,2026-01-05,500,book,letusc
+9,2026-01-05,700,recharge,jio
+10,2026-01-05,500,food,Pizza
+11,2026-01-05,500,train,lucknow to prayagraj
+12,2026-01-05,5000,mobile,lenovo
+13,2026-01-07,500,food,Snacks
