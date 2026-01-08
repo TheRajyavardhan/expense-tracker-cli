@@ -6,7 +6,7 @@ def add_expense(amt,cate,date,note):
     exp_record = st.get_exp_list()
     id = ut.get_id(exp_record)
     exp_list = [id,date,amt,cate,note] 
-    return st.insert_exp(exp_list)
+    return st.insert_exp(exp_list,"expense.txt")
 
 def view_all_record():
     st.display_all_record()
@@ -66,4 +66,11 @@ def exp_by_category():
             print("Date: ",row[1])
             print("Amount: ",row[2])
             print("Note: ",row[4],end='\n\n')
-    
+
+def update_exp(search_id):
+    exp_list = st.get_exp_list()
+    new_exp_list= []
+    for row in exp_list:
+        if row[0]==search_id:
+            
+    st.update_exp_record(search_id)

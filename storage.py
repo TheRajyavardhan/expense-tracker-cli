@@ -1,9 +1,9 @@
 from utils import EXPENSE_FILE
 import csv
 
-def insert_exp(exp_list):
+def insert_exp(exp_list,exp_file):
     try: 
-        with open(EXPENSE_FILE,"a",newline="") as file:
+        with open(exp_file,"a",newline="") as file:
             csv.writer(file).writerow(exp_list)
         return True
     except FileNotFoundError:
@@ -37,6 +37,9 @@ def display_all_record():
         return
     except FileNotFoundError:
         print("File not found.") 
+
+def update_exp_record(search_id):
+    exp_list = get_exp_list()
 
 
 

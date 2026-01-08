@@ -27,6 +27,11 @@ def find_unique_categories(exp_list):
       unique_list = {}
       idx = 0
       for row in exp_list:
+              found = False
+              if row[3] in unique_list.values():
+                     found = True
+              if found:
+                     continue
               unique_list[idx] = row[3]
               idx+=1
       return unique_list

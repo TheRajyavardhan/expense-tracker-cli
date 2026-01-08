@@ -11,3 +11,4 @@
 11,2026-01-05,500,train,lucknow to prayagraj
 12,2026-01-05,5000,mobile,lenovo
 13,2026-01-07,500,food,Snacks
+14,2026-01-07,2000,utilities,pertroleum

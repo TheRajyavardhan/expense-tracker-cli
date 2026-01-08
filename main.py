@@ -56,6 +56,34 @@ def main():
                 print("Invalid ID Entry.")
             eo.search_exp_id(search_id)
 
+        elif selected_opt == 6:
+            stop_updating = False
+            while not stop_adding:
+                search_id = input("Enter the Expense ID: ")
+                stop_opt = False
+                while not stop_opt:
+                    update_var = input(
+                            "Update Expense:\n"
+                            "1. Amount\n"
+                            "2. Category\n"
+                            "3. Note\n"
+                            "4. Date\n"
+                            "0. Cancel")
+                    if update_var == '0':  
+                        stop_opt = True
+                    else:
+                        pass
+                
+                temp = input(
+                    "Do you want to update more records? (Enter = yes, n=no)"
+                    ).lower()
+                if temp == 'n':
+                    stop_updating = True
+                
+                    
+
+                
+
         elif selected_opt == 8:
             ans = input(
                 "Do you want to terminate this program? (Enter = yes, n = no).... "
