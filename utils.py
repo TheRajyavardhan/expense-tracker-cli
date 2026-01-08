@@ -17,7 +17,6 @@ def validate_date(search_date):
              return True
        
         except ValueError:
-             print("Invalid Date Entry.")
              return False
 
 def find_unique_categories(exp_list):
@@ -35,3 +34,17 @@ def find_unique_categories(exp_list):
               unique_list[idx] = row[3]
               idx+=1
       return unique_list
+
+def validate_input(updated_entry,updated_var):
+        if updated_var == '1':
+                if validate_date(updated_entry):
+                     return True
+        elif updated_var == '2':
+                if updated_entry.isdigit() and int(updated_entry)>0:
+                      return True
+        elif updated_var == '3':
+                if updated_entry.isalpha():
+                       return True
+        elif updated_var == '4':
+               return True
+        return False

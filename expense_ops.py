@@ -5,8 +5,8 @@ import utils as ut
 def add_expense(amt,cate,date,note):
     exp_record = st.get_exp_list()
     id = ut.get_id(exp_record)
-    exp_list = [id,date,amt,cate,note] 
-    return st.insert_exp(exp_list,"expense.txt")
+    exp_row = [id,date,amt,cate,note] 
+    return st.insert_exp([exp_row],"expense.txt")
 
 def view_all_record():
     st.display_all_record()
@@ -29,7 +29,7 @@ def search_exp_id(search_id):
 def exp_by_date(search_date):
     
     if not ut.validate_date(search_date):
-        print("Invalid Input")
+        print("Invalid date entry.")
         return 
     
     exp_list = st.get_exp_list()
@@ -67,10 +67,38 @@ def exp_by_category():
             print("Amount: ",row[2])
             print("Note: ",row[4],end='\n\n')
 
-def update_exp(search_id):
+def update_exp(search_id,update_var):
+    exp_list = st.get_exp_list()
+    new_exp_list= []
+    field_list = ["date","amount","category","note"]
+    for row in exp_list:
+        if row[0]==search_id:
+            print("Enter your updated",field_list[int(update_var)-1],end="")
+            print(": ",end="")
+            updated_entry = input().lower()
+            if not ut.validate_input(updated_entry,update_var):
+                print("Invalid Entry.")
+                return 
+            row[int(update_var)] = updated_entry
+        new_exp_list.append(row)
+    temp_file = "temp.txt"
+    st.insert_exp(new_exp_list,temp_file) 
+    st.replace_file(temp_file) 
+
+def delete_exp_id(search_id):
     exp_list = st.get_exp_list()
     new_exp_list= []
     for row in exp_list:
         if row[0]==search_id:
-            
-    st.update_exp_record(search_id)
+            continue
+        new_exp_list.append(row)
+    temp_file = "temp.txt"
+    st.insert_exp(new_exp_list,temp_file) 
+    st.replace_file(temp_file)
+
+def total_expense():
+    exp_list = st.get_exp_list()
+    total_exp = 0
+    for row in exp_list:
+        total_exp += int(row[2])
+    print("Total Expense: ",total_exp)

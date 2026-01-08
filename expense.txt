@@ -2,7 +2,7 @@
 2,2026-01-01,120,transport,bus fare
 3,2026-01-02,1500,shopping,groceries
 4,2026-01-03,99,entertainment,movie
-5,2026-01-04,300,Utilities,mobile recharge
+5,2026-01-04,999,Utilities,mobile recharge
 6,2026-01-05,200,novel,iron dyansty
 7,2026-01-05,500,book,atomic habits
 8,2026-01-05,500,book,letusc
@@ -12,3 +12,6 @@
 12,2026-01-05,5000,mobile,lenovo
 13,2026-01-07,500,food,Snacks
 14,2026-01-07,2000,utilities,pertroleum
+15,2026-01-08,500,utilities,stationary items
+16,2026-01-08,500,cloth,winter clothing
+17,2026-01-08,222,date,girlfriend

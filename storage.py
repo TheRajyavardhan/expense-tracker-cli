@@ -1,10 +1,11 @@
 from utils import EXPENSE_FILE
 import csv
+import os
 
-def insert_exp(exp_list,exp_file):
+def insert_exp(exp_row,exp_file):
     try: 
         with open(exp_file,"a",newline="") as file:
-            csv.writer(file).writerow(exp_list)
+            csv.writer(file).writerows(exp_row)
         return True
     except FileNotFoundError:
         print("File not found.")
@@ -38,8 +39,8 @@ def display_all_record():
     except FileNotFoundError:
         print("File not found.") 
 
-def update_exp_record(search_id):
-    exp_list = get_exp_list()
+def replace_file(new_file):
+    os.replace(new_file,EXPENSE_FILE)
 
 
 

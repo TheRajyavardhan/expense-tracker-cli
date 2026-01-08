@@ -58,33 +58,52 @@ def main():
 
         elif selected_opt == 6:
             stop_updating = False
-            while not stop_adding:
+            while not stop_updating:
                 search_id = input("Enter the Expense ID: ")
+                if not search_id.isdigit():
+                    print("Invalid ID Entry.")
+                    continue
                 stop_opt = False
                 while not stop_opt:
                     update_var = input(
                             "Update Expense:\n"
-                            "1. Amount\n"
-                            "2. Category\n"
-                            "3. Note\n"
-                            "4. Date\n"
-                            "0. Cancel")
+                            "1. Date\n"
+                            "2. Amount\n"
+                            "3. Category\n"
+                            "4. Note\n"
+                            "0. Cancel\n"
+                            "Enter your choice: ")
                     if update_var == '0':  
                         stop_opt = True
+                    elif update_var not in ('1','2','3','4'):
+                        print("Invalid choice.")
                     else:
-                        pass
-                
+                        eo.update_exp(search_id,update_var)
+
                 temp = input(
-                    "Do you want to update more records? (Enter = yes, n=no)"
+                    "Do you want to update more records? (Enter = yes, n=no).... "
                     ).lower()
                 if temp == 'n':
                     stop_updating = True
-                
-                    
-
-                
-
+                    break
+        
+        
+        elif selected_opt == 7:
+            stop_deleting = False
+            while not stop_deleting:
+                search_id = input("Enter the Expense ID: ")
+                if not search_id.isdigit():
+                    print("Invalid ID Entry.")
+                eo.delete_exp_id(search_id)
+                ans = input("Do you want to delete more expense? (Enter = yes, n = no)...").lower()
+                if ans == 'n':
+                    stop_deleting = True
+                    break
+        
         elif selected_opt == 8:
+            eo.total_expense()
+
+        elif selected_opt == 9:
             ans = input(
                 "Do you want to terminate this program? (Enter = yes, n = no).... "
             ).lower()
