@@ -1,11 +1,12 @@
 import storage as st
 import utils as ut
 
+exp_list = st.get_exp_list()
 
 def add_expense(date, amt, cate, note):
     amt = ut.valid_amount(amt)
     if amt == None:
-        print("Invalid amount.")
+        print("Invalid amount.Enter the positive number.")
         return
     if not ut.valid_category(cate):
         print("Invalid category.")
@@ -13,8 +14,7 @@ def add_expense(date, amt, cate, note):
     if ut.validate_date(date) == None:
         print("Invalid Date.")
         return
-    exp_record = st.get_exp_list()
-    id = ut.get_id(exp_record)
+    id = ut.get_id(exp_list)
     exp_row = [id, date, amt, cate, note]
     return st.insert_exp([exp_row], "expense.txt")
 
@@ -24,7 +24,6 @@ def view_all_record():
 
 
 def search_exp_id(search_id):
-    exp_list = st.get_exp_list()
 
     if not exp_list:
         print("Empty Record.")
@@ -45,7 +44,6 @@ def exp_by_date(search_date):
         print("Invalid date entry.")
         return
 
-    exp_list = st.get_exp_list()
     found = False
 
     if not exp_list:
@@ -66,7 +64,9 @@ def exp_by_date(search_date):
 
 
 def exp_by_category():
-    exp_list = st.get_exp_list()
+    if not exp_list:
+        print("File is empty.")
+        return 
     category_list = ut.find_unique_categories(exp_list)
     print("Choose the category: ")
 
@@ -75,7 +75,7 @@ def exp_by_category():
         print(option_line)
     idx = input("Enter the category: ")
     for row in exp_list:
-        if row[3] == category_list[int(idx) - 1]:
+        if row[3].lower().strip() == category_list[int(idx) - 1]:
             print("\nExpense ID: ", row[0])
             print("Date: ", row[1])
             print("Amount: ", row[2])
@@ -83,7 +83,9 @@ def exp_by_category():
 
 
 def update_exp(search_id, update_var):
-    exp_list = st.get_exp_list()
+    if not exp_list:
+        print("File is empty.")
+        return 
     new_exp_list = []
     field_list = ["date", "amount", "category", "note"]
     for row in exp_list:
@@ -104,20 +106,35 @@ def update_exp(search_id, update_var):
 
 
 def delete_exp_id(search_id):
-    exp_list = st.get_exp_list()
+
+    if not exp_list:
+        print("File is empty.")
+        return 
     new_exp_list = []
+    found = False
     for row in exp_list:
         if row[0] == search_id:
+            found = True
             continue
         new_exp_list.append(row)
+    if not found: 
+        print("ID not found.")
+        return 
     temp_file = "temp.txt"
     st.insert_exp(new_exp_list, temp_file)
+    ask = input("Are you sure? (Enter = yes,n = no)...").strip().lower()
+    if ask == 'no':
+        print("Deletiton cancelled.")        
+        return 
     st.replace_file(temp_file)
+    print("ID deleted successfully.")
 
 
 def total_expense():
-    exp_list = st.get_exp_list()
     total_exp = 0
+    if not exp_list:
+        print("File is empty.")
+        return 
     for row in exp_list:
         total_exp += float(row[2])
     print("Total Expense: ", total_exp)

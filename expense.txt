@@ -1,8 +1,9 @@
-1,2026-01-01,250,food,Lunch
+id,date,amount,category,note
+1,2026-01-01,500.0,food,Lunch
 2,2026-01-01,120,transport,bus fare
 3,2026-01-02,1500,shopping,groceries
 4,2026-01-03,99,entertainment,movie
-5,2026-01-04,999,Utilities,mobile recharge
+5,2026-01-10,999,Utilities,mobile recharge
 6,2026-01-05,200,novel,iron dyansty
 7,2026-01-05,500,book,atomic habits
 8,2026-01-05,500,book,letusc
@@ -17,4 +18,3 @@
 17,2026-01-08,222,date,girlfriend
 18,2026-01-09,500,grocery,Vegetables
 19,2026-01-09,50.0,utilities,Zerox
-20,2026-01-10,60.0,food & drink,Papdi chat

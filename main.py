@@ -30,7 +30,7 @@ def main():
                 category = input("Enter the category: ").strip().lower()
                 exp_date = input("Enter the date: ")
                 note = input("Enter the note: ")
-                result = eo.add_expense(amt, category, exp_date, note)
+                result = eo.add_expense(exp_date, amt, category, note)
                 if result == True:
                     print("Expenses added successfully.")
                 ans = input(
@@ -95,7 +95,7 @@ def main():
                     print("Invalid ID Entry.")
                 eo.delete_exp_id(search_id)
                 ans = input(
-                    "Do you want to delete more expense? (Enter = yes, n = no)..."
+                    "Do you want to delete more expense ID? (Enter = yes, n = no)..."
                 ).lower()
                 if ans == "n":
                     stop_deleting = True

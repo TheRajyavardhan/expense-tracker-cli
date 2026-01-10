@@ -4,17 +4,19 @@ EXPENSE_FILE = "expense.txt"
 
 
 def get_id(exp_record):
-    try:
-        if not exp_record:
-            return 1
-        else:
-            id_list = []
-            for row in exp_record:
-                id_list.append(int(row[0]))
-            max_id = max(id_list)
-            return max_id + 1
-    except FileNotFoundError:
-        print("File not found.")
+    max_id = 0
+    
+    for row in exp_record:
+        if not row:
+            continue
+        
+        try:
+                current_id = int(row[0])
+                if current_id > max_id:
+                    max_id = current_id
+        except (ValueError, IndexError):
+                continue
+    return max_id+1
 
 
 def validate_date(search_date):
@@ -35,18 +37,18 @@ def find_unique_categories(exp_list):
     idx = 0
     for row in exp_list:
         found = False
-        if row[3] in unique_list.values():
+        if row[3].lower().strip() in unique_list.values():
             found = True
         if found:
             continue
-        unique_list[idx] = row[3]
+        unique_list[idx] = row[3].lower().strip()
         idx += 1
     return unique_list
 
 
 def validate_input(updated_entry, updated_var):
     if updated_var == "1":
-        if validate_date(updated_entry):
+        if validate_date(updated_entry) != None:
             return True
     elif updated_var == "2":
         if valid_amount(updated_entry) != None:
