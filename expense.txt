@@ -12,6 +12,9 @@
 12,2026-01-05,5000,mobile,lenovo
 13,2026-01-07,500,food,Snacks
 14,2026-01-07,2000,utilities,pertroleum
-15,2026-01-08,500,utilities,stationary items
+15,2026-01-08,50.0,utilities,stationary items
 16,2026-01-08,500,cloth,winter clothing
 17,2026-01-08,222,date,girlfriend
+18,2026-01-09,500,grocery,Vegetables
+19,2026-01-09,50.0,utilities,Zerox
+20,2026-01-10,60.0,food & drink,Papdi chat
