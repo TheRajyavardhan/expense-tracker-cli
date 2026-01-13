@@ -1,4 +1,4 @@
-\#Expense Tracker CLI
+# Expense Tracker CLI
 
 
 
@@ -12,63 +12,74 @@ The project is designed to strengthen core Python fundamentals such as file hand
 
 
 
-\##Features
+## Features
 
 
 
-Add new expense records
+- Add new expense records
 
 
 
-View all stored expenses
+- View all stored expenses
 
 
 
-Update existing expense entries
+- Update existing expense entries
 
 
 
-Delete expense records
+- Delete expense records
 
 
 
-Calculate total expenses
+- Calculate total expenses
 
 
 
-Store data persistently using CSV files
+- Store data persistently using CSV files
 
 
 
-Input validation for dates and numeric values
+- Input validation for dates and numeric values
 
 
 
-Clean, menu-driven CLI interface
+- Clean, menu-driven CLI interface
 
 
 
-\##Project Structure
+## Project Structure
 
 
 
-expense-tracker-cli/
 
-│
 
-├── main.py          # Entry point of the application
+- main.py           --> Entry point of the application
 
-├── storage.py       # Handles file operations (read/write/update)
+- storage.py       --> Handles file operations (read/write/update)
 
-├── expense.py       # Expense-related logic and data structure
+- expense.py       --> Expense-related logic and data structure
 
-├── utils.py         # Helper functions (validation, formatting)
+- utils.py         --> Helper functions (validation, formatting)
 
-├── expenses.csv     # Expense data storage (auto-created)
+- expenses.csv     --> Expense data storage (auto-created)
 
-├── README.md        # Project documentation
+- README.md        -->Project documentation
 
-└── requirements.txt # Project dependencies (if any)
+## Technologies Used
+
+- Python 3
+
+- Standard Libraries:
+
+    - csv
+
+    - datetime
+
+    - os
+
+No external dependencies are required.
+
 
 
 
