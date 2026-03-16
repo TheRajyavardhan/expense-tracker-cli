@@ -1,47 +1,27 @@
 from utils import EXPENSE_FILE
-import csv
 import os
+import pandas as pd
 
 
-def insert_exp(exp_row, exp_file):
-    try:
-        with open(exp_file, "a", newline="") as file:
-            csv.writer(file).writerows(exp_row)
-        return True
-    except FileNotFoundError:
-        print("File not found.")
-        return
+def insert_exp(exp_row):
+    df = pd.DataFrame([exp_row], columns=["Id", "Date", "Amount", "Category", "Note"])
+    if not os.path.exists(EXPENSE_FILE) or os.path.getsize(EXPENSE_FILE) == 0: # check file is existing or not. Also check if it's empty
+        df.to_csv(EXPENSE_FILE, mode="w", index=False, header=True) # create new file for records
+    else:
+        df.to_csv(EXPENSE_FILE, mode="a", index=False, header=False) # write into existing file
+    print("Expense record added successfully.")
+    return
 
 
 def get_exp_list():
     try:
-        rows = []
-        with open(EXPENSE_FILE, "r") as file:
-            rows = list(csv.reader(file))
-            return rows
-    except FileNotFoundError:
-        print("File not found.")
+        exp_list = pd.read_csv(EXPENSE_FILE) # return all data from record file as DataFrame
+        return exp_list
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        exp_list = pd.DataFrame(columns=["Id", "Date", "Amount", "Category", "Note"])
+        return exp_list
 
 
-def display_all_record():
-    try:
-        with open(EXPENSE_FILE, "r") as file:
-            rows = list(csv.reader(file))
-            if not rows:
-                print("Empty Records.")
-            else:
-                for row in rows:
-                    print()
-                    print("ID: ", row[0])
-                    print("Date: ", row[1])
-                    print("Amount: ", row[2])
-                    print("Category: ", row[3])
-                    print("Note: ", row[4])
-                    print()
-        return
-    except FileNotFoundError:
-        print("File not found.")
-
-
-def replace_file(new_file):
-    os.replace(new_file, EXPENSE_FILE)
+def save_list(new_list):
+    new_list.to_csv(EXPENSE_FILE, index=False, header=True) # Save whole DataFrame into record file.
+    return

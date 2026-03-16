@@ -1,28 +1,24 @@
 from datetime import datetime, date
+import pandas as pd
 
 EXPENSE_FILE = "expense.txt"
 
 
-def get_id(exp_record):
-    max_id = 0
-    
-    for row in exp_record:
-        if not row:
-            continue
-        
-        try:
-                current_id = int(row[0])
-                if current_id > max_id:
-                    max_id = current_id
-        except (ValueError, IndexError):
-                continue
-    return max_id+1
+def get_id():
+    try:
+        df = pd.read_csv(EXPENSE_FILE) # load data from expense file as DataFrame
+        max_id = df["Id"].max() # find max value in id column
+        return max_id + 1
+    except FileNotFoundError:
+        return 1
 
 
 def validate_date(search_date):
     try:
-        entered_date = datetime.strptime(search_date, "%Y-%m-%d").date()
-        if entered_date > date.today():
+        if search_date == "":
+            search_date = date.today().isoformat() # Make default value equal current date
+        entered_date = datetime.strptime(search_date, "%Y-%m-%d").date() # check correct format for date
+        if entered_date > date.today(): # check if date is not in future
             return None
         return search_date
     except ValueError:
@@ -30,40 +26,27 @@ def validate_date(search_date):
 
 
 def find_unique_categories(exp_list):
-    if not exp_list:
-        print("No category.")
-        return
-    unique_list = {}
-    idx = 0
-    for row in exp_list:
-        found = False
-        if row[3].lower().strip() in unique_list.values():
-            found = True
-        if found:
-            continue
-        unique_list[idx] = row[3].lower().strip()
-        idx += 1
-    return unique_list
+    unique_cate = exp_list["Category"].unique() # find all value in category column of DataFrame
+    return unique_cate
 
 
-def validate_input(updated_entry, updated_var):
-    if updated_var == "1":
-        if validate_date(updated_entry) != None:
+def valid_input(updated_entry, updated_var):
+    if updated_var == "Date":
+        if validate_date(updated_entry) is not None:
             return True
-    elif updated_var == "2":
-        if valid_amount(updated_entry) != None:
+    elif updated_var == "Amount":
+        if valid_amount(float(updated_entry)) is not None:
             return True
-    elif updated_var == "3":
+    elif updated_var == "Category":
         if valid_category(updated_entry):
             return True
-    elif updated_var == "4":
+    elif updated_var == "Note":
         return True
     return False
 
 
 def valid_amount(amount):
     try:
-        amount = float(amount)
         if amount <= 0:
             raise ValueError
         return amount

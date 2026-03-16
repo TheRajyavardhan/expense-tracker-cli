@@ -1,20 +1,26 @@
-id,date,amount,category,note
-1,2026-01-01,500.0,food,Lunch
-2,2026-01-01,120,transport,bus fare
-3,2026-01-02,1500,shopping,groceries
-4,2026-01-03,99,entertainment,movie
-5,2026-01-10,999,Utilities,mobile recharge
-6,2026-01-05,200,novel,iron dyansty
-7,2026-01-05,500,book,atomic habits
-8,2026-01-05,500,book,letusc
-9,2026-01-05,700,recharge,jio
-10,2026-01-05,500,food,Pizza
-11,2026-01-05,500,train,lucknow to prayagraj
-12,2026-01-05,5000,mobile,lenovo
-13,2026-01-07,500,food,Snacks
-14,2026-01-07,2000,utilities,pertroleum
+Id,Date,Amount,Category,Note
+1,2026-01-01,500.0,food,bunch
+2,2026-01-01,120.0,transport,bus fare
+3,2026-01-02,1500.0,shopping,groceries
+4,2026-01-03,99.0,entertainment,movie
+5,2026-01-10,599.0,Utilities,mobile recharge
+6,2026-01-05,200.0,novel,iron dyansty
+7,2026-01-05,500.0,book,atomic habits
+8,2026-01-05,500.0,book,letusc
+9,2026-01-05,700.0,recharge,jio
+10,2026-01-05,500.0,food,Pizza
+11,2026-01-05,500.0,travel,lucknow to prayagraj
+12,2026-01-05,5000.0,mobile,lenovo
+13,2026-01-07,500.0,food,Snacks
+14,2026-01-07,2000.0,utilities,pertroleum
 15,2026-01-08,50.0,utilities,stationary items
-16,2026-01-08,500,cloth,winter clothing
-17,2026-01-08,222,date,girlfriend
-18,2026-01-09,500,grocery,Vegetables
+16,2026-01-08,500.0,cloth,winter clothing
+17,2026-01-08,222.0,date,girlfriend
+18,2026-01-09,500.0,grocery,Vegetables
 19,2026-01-09,50.0,utilities,Zerox
+20,2026-03-15,269.0,food,Cake
+21,2026-03-16,250.0,food,Vegetables
+22,2026-03-16,854.0,cloth,Pants
+23,2026-03-16,791.0,cloth,Shirt
+24,2026-03-16,585.0,electronics,headphone
+25,2026-03-16,900.0,travel,train 1st AC

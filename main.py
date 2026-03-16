@@ -1,119 +1,130 @@
 import expense_ops as eo
 
-# import datetime
-import datetime
+
+# -------------------------------
+# Safe input functions
+# -------------------------------
+
+
+def get_int(prompt): # avoid value error for int input
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Enter a number.")
+
+
+def get_float(prompt): # avoid value error for float input
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid amount. Enter a numeric value.")
+
+
+# -------------------------------
+# Menu wrapper functions
+# -------------------------------
+
+
+def add_expense_menu(): # Menu for expense addition
+    amt = get_float("Enter the amount: ")
+    category = input("Enter the category: ").strip().lower()
+    exp_date = input("Enter the date (YYYY-MM-DD) [default: today]: ")
+    note = input("Enter the note: ").lower().strip()
+    eo.add_expense(amt, category, note, exp_date)
+
+
+def view_by_date_menu():
+    exp_date = input("Enter the date (YYYY-MM-DD) [default: today]: ")
+    eo.exp_by_date(exp_date)
+
+
+def search_menu():
+    search_id = get_int("Enter the Expense ID: ")
+    eo.search_exp_id(search_id)
+
+
+def update_menu(): # Menu for updating expense record
+    search_id = get_int("Enter the Expense ID: ")
+
+    print("\nUpdate Expense")
+    print("1. Date")
+    print("2. Amount")
+    print("3. Category")
+    print("4. Note")
+    print("0. Cancel")
+
+    choice = get_int("Enter your choice: ")
+
+    if choice == 0:
+        return
+
+    if choice not in (1, 2, 3, 4):
+        print("Invalid option.")
+        return
+
+    fields = ["", "Date", "Amount", "Category", "Note"]
+
+    eo.update_exp(search_id, fields[choice])
+
+
+def delete_menu():
+    search_id = get_int("Enter the Expense ID: ")
+    eo.delete_exp_id(search_id)
+
+
+# -------------------------------
+# Menu dictionary
+# -------------------------------
+
+menu = {
+    1: add_expense_menu,
+    2: eo.view_all_record,
+    3: view_by_date_menu,
+    4: eo.exp_by_category,
+    5: search_menu,
+    6: update_menu,
+    7: delete_menu,
+    8: eo.total_expense,
+}
+
+
+# -------------------------------
+# Main program
+# -------------------------------
 
 
 def main():
 
-    do_stop = False
-    while do_stop != True:
+    while True:
 
-        print("======== Expense Tracker ========")
+        print("=" * 40)
+        print("            Expense Tracker")
+        print("=" * 40)
         print("1. Add new expense")
         print("2. View all expense")
-        print("3. Viw expenses by date")
+        print("3. View expenses by date")
         print("4. View expense by category")
-        print("5. Search Expense ID.")
+        print("5. Search Expense ID")
         print("6. Update an expense")
         print("7. Delete an expense")
         print("8. Show total expense")
         print("9. Exit")
-        print("=================================")
+        print("=" * 40)
 
-        selected_opt = int(input("Your choice: "))
+        choice = get_int("Your choice: ")
 
-        if selected_opt == 1:
-            stop_adding = False
-            while stop_adding != True:
-                amt = input("Enter the amount: ")
-                category = input("Enter the category: ").strip().lower()
-                exp_date = input("Enter the date: ")
-                note = input("Enter the note: ")
-                result = eo.add_expense(exp_date, amt, category, note)
-                if result == True:
-                    print("Expenses added successfully.")
-                ans = input(
-                    "Do you want to continue adding expense? (Enter = yes, n = no)... "
-                ).lower()
-                if ans == "n":
-                    stop_adding = True
+        if choice == 9:
+            print("Program terminated.")
+            break
 
-        elif selected_opt == 2:
-            eo.view_all_record()
+        action = menu.get(choice) # 'get' return value corresponding to key
 
-        elif selected_opt == 3:
-            exp_date = input("Enter the date(YYYY-MM-DD): ")
-            eo.exp_by_date(exp_date)
-
-        elif selected_opt == 4:
-            eo.exp_by_category()
-
-        elif selected_opt == 5:
-            search_id = input("Enter the Expense ID: ")
-            if not search_id.isdigit():
-                print("Invalid ID Entry.")
-            eo.search_exp_id(search_id)
-
-        elif selected_opt == 6:
-            stop_updating = False
-            while not stop_updating:
-                search_id = input("Enter the Expense ID: ")
-                if not search_id.isdigit():
-                    print("Invalid ID Entry.")
-                    continue
-                stop_opt = False
-                while not stop_opt:
-                    update_var = input(
-                        "Update Expense:\n"
-                        "1. Date\n"
-                        "2. Amount\n"
-                        "3. Category\n"
-                        "4. Note\n"
-                        "0. Cancel\n"
-                        "Enter your choice: "
-                    )
-                    if update_var == "0":
-                        stop_opt = True
-                    elif update_var not in ("1", "2", "3", "4"):
-                        print("Invalid choice.")
-                    else:
-                        eo.update_exp(search_id, update_var)
-
-                temp = input(
-                    "Do you want to update more records? (Enter = yes, n=no).... "
-                ).lower()
-                if temp == "n":
-                    stop_updating = True
-                    break
-
-        elif selected_opt == 7:
-            stop_deleting = False
-            while not stop_deleting:
-                search_id = input("Enter the Expense ID: ")
-                if not search_id.isdigit():
-                    print("Invalid ID Entry.")
-                eo.delete_exp_id(search_id)
-                ans = input(
-                    "Do you want to delete more expense ID? (Enter = yes, n = no)..."
-                ).lower()
-                if ans == "n":
-                    stop_deleting = True
-                    break
-
-        elif selected_opt == 8:
-            eo.total_expense()
-
-        elif selected_opt == 9:
-            ans = input(
-                "Do you want to terminate this program? (Enter = yes, n = no).... "
-            ).lower()
-            if ans == "n":
-                continue
-            else:
-                do_stop = True
+        if action: # action = f
+            action() # action() = f()
         else:
-            print("Invalid response. Try again")
+            print("Invalid option.")
 
 
 if __name__ == "__main__":
